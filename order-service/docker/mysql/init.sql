@@ -1,0 +1,1 @@
+CREATE DATABASE IF NOT EXISTs order_service;
