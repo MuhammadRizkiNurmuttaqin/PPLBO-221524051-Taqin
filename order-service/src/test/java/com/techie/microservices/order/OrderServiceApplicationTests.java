@@ -1,6 +1,6 @@
 package com.techie.microservices.order;
 
-import com.programmingtechie.orderservice.stub.InventoryStubs;
+import com.techie.microservices.order.stubs.InventoryClientStub;
 import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,7 +42,7 @@ class OrderServiceApplicationTests {
                 }
                 """;
 
-        InventoryStubs.stubInventoryCall("iphone_15", 1);
+        InventoryClientStub.stubInventoryCall("iphone_15", 1);
         var responseBodyString = RestAssured.given()
                 .contentType("application/json")
                 .body(submitOrderJson)
@@ -54,6 +54,6 @@ class OrderServiceApplicationTests {
                 .extract()
                 .body().asString();
 
-        assertThat(responseBodyString, Matchers.is("Order Placed Successfully"));
+        assertThat(responseBodyString, Matchers.is("order placed successfully"));
     }
 }
